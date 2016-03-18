@@ -16,7 +16,13 @@ namespace Kokuhaku
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "kokuhaku", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "mail",
+                url: "{controller}/{action}",
+                defaults: new { controller = "kokuhaku", action = "mail" }
             );
         }
     }

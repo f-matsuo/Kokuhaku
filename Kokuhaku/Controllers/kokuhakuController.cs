@@ -34,11 +34,11 @@ namespace Kokuhaku.Controllers
 
             return View();
         }
-        public ActionResult mail(int id)
+        public ActionResult mail()//int id
         {
             //引数をキーに記事情報を取得
-            kokuhaku kokuhaku = db.kokuhakus.Find(id);
-            return View(kokuhaku);
+             //  kokuhaku kokuhaku = db.kokuhakus.Find(id);
+                return View(db.kokuhakus);
         }
     }
 }

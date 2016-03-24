@@ -17,7 +17,7 @@ namespace Kokuhaku
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-           // Database.SetInitializer<MvcBasicContext>(new MvcBasicInitializer());
+           // Database.SetInitializer<kokuhakuContext>(new kokuhakuInitializer());
         }
     }
 }

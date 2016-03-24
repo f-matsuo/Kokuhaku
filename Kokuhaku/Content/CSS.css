@@ -11,3 +11,19 @@ table {
     background-image: url('flower-back1298.jpg');
     background-size: cover;
 }
+
+p.gyou::after {
+    line-height: 250%;
+    margin: 10px 0px 0px 0px;
+}
+
+.title_list{
+    width:200px;
+    font-size:32px;
+    
+}
+
+br.kaigyou{
+    line-height:4em;
+}
+

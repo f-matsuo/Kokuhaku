@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<!DOCTYPE html>
     <head>
         <link rel="stylesheet" href="~/Content/CSS.css" type="text/css">
-        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Script-Type" content="text/javascript" />
         <title>告白メール代行</title>
     </head>
 <h1 class="text-center" style="color:hotpink">メールでの告白代行致します。</h1>
@@ -20,16 +20,14 @@
             @Html.TextBox(
             "name", //要素名
             "",     //デフォルト値
-            new { maxlength = 8, style = "width:300px;" }   //その他の属性
+            new { id = "name" , maxlength = 8, style = "width:300px;" }   //その他の属性
             )
         </div>
         <div class="text-center " style="position:relative;right:50px;">
            <strong> *全角・半角８文字以内で入力してください</strong>
         </div>
 
-        <br />
-        <br />
-        <br />
+    <br class="kaigyou" />
 
         <div style="position:relative;left:180px;">
             <strong>・好きになった理由</strong>
@@ -37,13 +35,12 @@
             @Html.DropDownListFor(
           model => model.reason,          // プロパティ
           (IEnumerable<SelectListItem>)ViewBag.SelectReason,  // 選択オプション
-          new { @class = "title_list", id = "reason", style = "width:200px;font-size:32px;" }  // その他の属性
+          new { @class = "title_list", id = "reason" }  // その他の属性
         )
         </div>
 
-        <br />
-        <br />
-        <br />
+        <br class="kaigyou" />
+        
 
         <div style="position:relative;left:180px;">
             <strong>・本気度</strong>
@@ -51,13 +48,11 @@
             @Html.DropDownListFor(
           model => model.honki,          // プロパティ
           (IEnumerable<SelectListItem>)ViewBag.SelectHonki,  // 選択オプション
-          new { @class = "title_list", id = "honki", style = "width:200px;font-size:32px;" }  // その他の属性
+          new { @class = "title_list", id = "honki" }  // その他の属性
         )
         </div>
 
-        <br />
-        <br />
-        <br />
+    <br class="kaigyou" />
 
         <div style="position:relative;left:180px;">
             <strong>・返事はいつまでにほしい？</strong>
@@ -65,13 +60,11 @@
             @Html.DropDownListFor(
           model => model.henzi,          // プロパティ
           (IEnumerable<SelectListItem>)ViewBag.SelectHenzi,  // 選択オプション
-          new { @class = "title_list", id = "henzi", style = "width:200px;font-size:32px;" }  // その他の属性
+          new { @class = "title_list", id = "henzi" }  // その他の属性
         )
         </div>
 
-        <br />
-        <br />
-        <br />
+    <br class="kaigyou" />
 
         <div class="text-right">
             <input type="button" class="btn btn-danger btn-lg" name="sousin" id="sousin" value="送信" style="width:200px;height:40px;position:relative;right:280px;" />
@@ -81,6 +74,7 @@
         <div class="container">
             <img src="~/Content/gazou.jpg" style="position:absolute;top:230px;left:700px;" width="310" height="350" />
         </div>
+
 </form>
 
 
@@ -89,7 +83,7 @@
     <script type="text/javascript">
         $(function () {
             //ボタンをクリックでデータを入れる
-            $('.btn').click(function (e) {
+            $('#sousin').click(function (e) {
                 var reason = $("#reason").val();
                 var honki = $("#honki").val();
                 var henzi = $("#henzi").val();
@@ -98,9 +92,8 @@
                 if (name == "") {
                     alert("名前は必ず入力してください。");
                 } else {
-                    window.location = "/kokuhaku/mail";
-
-                        }
+                    location.href = "/kokuhaku/mail?name=" + name;
+                }
             });
     });
 </script>

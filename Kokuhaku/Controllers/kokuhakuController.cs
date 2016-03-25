@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Kokuhaku.Models;
+using System.Collections;
 
 namespace Kokuhaku.Controllers
 {
@@ -34,23 +35,41 @@ namespace Kokuhaku.Controllers
 
             return View();
         }
-        public ActionResult mail()//int id
+        public ActionResult mail(int honki,int henzi,int reason)//int id
         {
-            var query = from x in db.honkis
-                        orderby x.honki
+                    //カテゴリーに属する言葉を取得
+                    
+
+                     var query = 
+                        from x in db.honkis
+                        where x.honki == honki
                         select x;
 
-            //引数をキーに記事情報を取得
-             //  kokuhaku kokuhaku = db.kokuhakus.Find(id);
-                return View(query);
+                    var okaesi =
+                       from y in db.henzis
+                       where y.henzi == henzi
+                       select y;
+
+                    var watasi=
+                       from z in db.reasons
+                       where z.reason == reason
+                       select z;
+
+                    List<object> member = new List<object>();
+                    member.Add(query);
+                    member.Add(okaesi);
+                    member.Add(watasi);
+
+                    return View(query);
         }
 
         // GET: Send
+        //string data = Request.Form("postdata");
         [HttpPost]
         public ActionResult Send(string value1)
         {
-            ViewData["PostData"] = value1 + "を受け取りました。";
-            return View();
+          ViewData["PostData"] = value1 + "を受け取りました。";
+          return View("mail"); //mail.cshtmlを検索
         }
     }
 }

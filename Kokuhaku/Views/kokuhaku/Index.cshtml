@@ -13,8 +13,7 @@
 <h1 class="text-center" style="color:hotpink">メールでの告白代行致します。</h1>
 
 
-@using (Html.BeginForm("Post", "api/HomeApi"))
-{
+<form action="/kokuhaku/mail" id="mail">
         <div class="text-center ">
             <strong>・伝えたい相手のお名前orニックネームを入力してください。</strong>
         </div>
@@ -77,8 +76,7 @@
         <div class="container">
             <img src="~/Content/gazou.jpg" style="position:absolute;top:230px;left:700px;" width="310" height="350" />
         </div>
-
-}
+</form>
 
 
 
@@ -95,8 +93,12 @@
                 if (name == "") {
                     alert("名前は必ず入力してください。");
                 } else {
-
-                    location.href = "/kokuhaku/mail?name=" + name;
+                   // $('#mail').attr('action', data('action'));
+                   // $('#mail').submit();
+                   // $().load("/kokuhaku/mail",
+                     //   { keyword: $('#name').val() });
+                
+                    location.href = "/kokuhaku/mail?honki=" + honki + "&henzi=" + henzi + "&reason=" + reason ;
                 }
             });
     });

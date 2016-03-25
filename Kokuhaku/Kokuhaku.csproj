@@ -228,6 +228,7 @@
     <Compile Include="Models\kokuhakuContext.cs" />
     <Compile Include="Models\kokuhakuInitializer.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\matome.cs" />
     <Compile Include="Models\ohenzi.cs" />
     <Compile Include="Models\riyuu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

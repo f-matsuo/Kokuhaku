@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Kokuhaku.Models.kokuhaku>
+﻿@model IEnumerable<Kokuhaku.Models.deta>
 
 @{
     ViewBag.Title = "メール画面";
@@ -37,8 +37,12 @@
 
         </td>
     </tr>
-
-    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.biko</td>
+        </tr>
+    }
 </table>
 
 

@@ -1,4 +1,4 @@
-﻿@model Kokuhaku.Models.kokuhaku
+﻿@model Kokuhaku.Models.deta
 
 @{
     ViewBag.Title = "Index";
@@ -11,17 +11,20 @@
         <title>告白メール代行</title>
     </head>
 <h1 class="text-center" style="color:hotpink">メールでの告白代行致します。</h1>
-<form>
+
+
+@using (Html.BeginForm("Post", "api/HomeApi"))
+{
         <div class="text-center ">
             <strong>・伝えたい相手のお名前orニックネームを入力してください。</strong>
         </div>
 
         <div class="text-center" style="position:relative;right:30px;">
             @Html.TextBox(
-            "name", //要素名
-            "",     //デフォルト値
-            new { id = "name" , maxlength = 8, style = "width:300px;" }   //その他の属性
-            )
+         "name", //要素名
+         "",     //デフォルト値
+         new { id = "name", maxlength = 8, style = "width:300px;" }   //その他の属性
+         )
         </div>
         <div class="text-center " style="position:relative;right:50px;">
            <strong> *全角・半角８文字以内で入力してください</strong>
@@ -33,23 +36,23 @@
             <strong>・好きになった理由</strong>
             <br />
             @Html.DropDownListFor(
-          model => model.reason,          // プロパティ
-          (IEnumerable<SelectListItem>)ViewBag.SelectReason,  // 選択オプション
-          new { @class = "title_list", id = "reason" }  // その他の属性
-        )
+       model => model.honki,          // プロパティ
+       (IEnumerable<SelectListItem>)ViewBag.SelectReason,  // 選択オプション
+       new { @class = "title_list", id = "reason" }  // その他の属性
+     )
         </div>
 
         <br class="kaigyou" />
-        
+
 
         <div style="position:relative;left:180px;">
             <strong>・本気度</strong>
             <br />
             @Html.DropDownListFor(
-          model => model.honki,          // プロパティ
-          (IEnumerable<SelectListItem>)ViewBag.SelectHonki,  // 選択オプション
-          new { @class = "title_list", id = "honki" }  // その他の属性
-        )
+       model => model.honki,          // プロパティ
+       (IEnumerable<SelectListItem>)ViewBag.SelectHonki,  // 選択オプション
+       new { @class = "title_list", id = "honki" }  // その他の属性
+     )
         </div>
 
     <br class="kaigyou" />
@@ -58,10 +61,10 @@
             <strong>・返事はいつまでにほしい？</strong>
             <br />
             @Html.DropDownListFor(
-          model => model.henzi,          // プロパティ
-          (IEnumerable<SelectListItem>)ViewBag.SelectHenzi,  // 選択オプション
-          new { @class = "title_list", id = "henzi" }  // その他の属性
-        )
+       model => model.honki,          // プロパティ
+       (IEnumerable<SelectListItem>)ViewBag.SelectHenzi,  // 選択オプション
+       new { @class = "title_list", id = "henzi" }  // その他の属性
+     )
         </div>
 
     <br class="kaigyou" />
@@ -75,7 +78,7 @@
             <img src="~/Content/gazou.jpg" style="position:absolute;top:230px;left:700px;" width="310" height="350" />
         </div>
 
-</form>
+}
 
 
 
@@ -92,6 +95,7 @@
                 if (name == "") {
                     alert("名前は必ず入力してください。");
                 } else {
+
                     location.href = "/kokuhaku/mail?name=" + name;
                 }
             });

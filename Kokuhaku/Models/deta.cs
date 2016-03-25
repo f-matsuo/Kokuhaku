@@ -6,11 +6,10 @@ using System.Web;
 
 namespace Kokuhaku.Models
 {
-    public class kokuhaku
+    public class deta
     {
+        [Key]
         public int honki { get; set; }
-        public int reason { get; set; }
-        public int henzi { get; set; }
-
+        public string biko { get; set; }
     }
 }

@@ -36,9 +36,21 @@ namespace Kokuhaku.Controllers
         }
         public ActionResult mail()//int id
         {
+            var query = from x in db.honkis
+                        orderby x.honki
+                        select x;
+
             //引数をキーに記事情報を取得
              //  kokuhaku kokuhaku = db.kokuhakus.Find(id);
-                return View(db.kokuhakus);
+                return View(query);
+        }
+
+        // GET: Send
+        [HttpPost]
+        public ActionResult Send(string value1)
+        {
+            ViewData["PostData"] = value1 + "を受け取りました。";
+            return View();
         }
     }
 }

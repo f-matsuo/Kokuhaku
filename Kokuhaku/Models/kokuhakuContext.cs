@@ -6,8 +6,10 @@ using System.Data.Entity;
 
 namespace Kokuhaku.Models
 {
-    public class kokuhakuContext:DbContext
+    public class kokuhakuContext : DbContext
     {
-        public DbSet<kokuhaku> kokuhakus { get; set; }
+        public DbSet<deta> honkis { get; set; }
+        public DbSet<riyuu> reasons { get; set; }
+        public DbSet<ohenzi> henzis { get; set; }
     }
 }

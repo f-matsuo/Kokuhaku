@@ -8,8 +8,10 @@ namespace Kokuhaku.Models
 {
     public class matome
     {
-       // [Key]
-       // public int id { get; set; }
-       // public string biko { get; set; }
+        [Key]
+        public string name { get; set; }
+        public string honkido { get; set; }
+        public string henzido { get; set; }
+        public string riyuudo { get; set; }
     }
 }

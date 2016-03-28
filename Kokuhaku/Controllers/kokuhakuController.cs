@@ -35,12 +35,15 @@ namespace Kokuhaku.Controllers
 
             return View();
         }
-        public ActionResult mail(int honki,int henzi,int reason)//int id
+        public ActionResult mail(int honki,int henzi,int reason,string name)//int id
         {
-                    //カテゴリーに属する言葉を取得
-                    
+                    //まとめのDB内のカラムを削除(保留)
+                    //  db.matomes.Remove(name);
+                    //  db.SaveChanges();
 
-                     var query = 
+                    //カテゴリーに属する言葉を取得
+
+                    var query = 
                         from x in db.honkis
                         where x.honki == honki
                         select x;
@@ -55,21 +58,35 @@ namespace Kokuhaku.Controllers
                        where z.reason == reason
                        select z;
 
-                    List<object> member = new List<object>();
-                    member.Add(query);
-                    member.Add(okaesi);
-                    member.Add(watasi);
+            //取り出した結果を一つのテーブルにまとめる
+            foreach(var x in query)
+            {
+                foreach(var y in okaesi)
+                {
+                    foreach(var z in watasi)
+                    {
+                db.matomes.Add(
+                new matome
+                {
+                    name = name,
+                    honkido = x.biko,
+                    henzido = y.biko,
+                    riyuudo = z.biko
+                }
+              );
+                        //DBに反映する
+                        db.SaveChanges();
+                    }
+                }
+            }
 
-                    return View(query);
-        }
-
-        // GET: Send
-        //string data = Request.Form("postdata");
-        [HttpPost]
-        public ActionResult Send(string value1)
-        {
-          ViewData["PostData"] = value1 + "を受け取りました。";
-          return View("mail"); //mail.cshtmlを検索
+            //結果を画面に表示
+            var kekka =
+                 from t in db.matomes
+                 where t.name == name
+                 select t;
+ 
+                    return View(kekka);
         }
     }
 }

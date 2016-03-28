@@ -246,6 +246,7 @@
     <Content Include="Content\flower-back1298.jpg" />
     <Content Include="Content\gazou.jpg" />
     <Content Include="Content\haikei.jpg" />
+    <Content Include="Content\tyou.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

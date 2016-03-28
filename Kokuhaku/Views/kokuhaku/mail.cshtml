@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Kokuhaku.Models.deta>
+﻿@model IEnumerable<Kokuhaku.Models.matome>
 
 @{
      ViewBag.Title = "メール画面";
@@ -13,6 +13,8 @@
 <h2 class="text-center">あなたにぴったりの告白メール分です</h2>
 
 <table class="table-bordered" style="width: 70%; height: 100%; margin-left:auto;margin-right:auto;">
+@foreach (var item in Model)
+{
     <tr>
         <td>
             <strong>件名：大事なメールだから落ち着いて開いてほしい。。。</strong>
@@ -20,7 +22,7 @@
     </tr>
     <tr>
         <td>
-            <strong>//名前を受け取る場所　＋　さんへ</strong>
+            <strong>@item.name さんへ</strong>
         </td>
     </tr>
 
@@ -29,54 +31,19 @@
             <h1>メール内容</h1>
         </td>
     </tr>
-    <tr>
-        <td>
-            <form name="form3" action="#">
-                取得したパラメータ：<input type="text" name="getpram" size="50" />
-            </form>
-
-        </td>
-    </tr>
-    @foreach (var item in Model)
-    {
         <tr>
-            <td>@item.biko</td>
+            <td>ぼくは人生初めての告白メールを作ったよ。好きになった理由は『@item.riyuudo』</td>
+        </tr>
+        <tr>
+            <td>バカみたいな理由で本気かどうか疑ってると思うけどけど、『@item.honkido』</td>
+        </tr>
+        <tr>
+            <td>返事は『@item.henzido』</td>
         </tr>
     }
     <tr>
-        <td></td>
+        <td>・・・・・</td>
     </tr>
 </table>
 
-
-<script type="text/javascript" language="javascript">
-            /* パラメータを受取る側 */
-            function getdata() {
-                /* アドレスの「?」以降の引数(パラメータ)を取得 */
-                var pram = location.search;
-                /* 引数がない時は処理しない */
-                if (!pram) return false;
-                /* 先頭の?をカット */
-                pram = pram.substring(1);
-                /* 「&」で引数を分割して配列に */
-                var pair = pram.split("&");
-                var i = temp = "";
-                var key = new Array();
-                for (i = 0; i < pair.length; i++) {
-                    /* 配列の値を「=」で分割 */
-                    temp = pair[i].split("=");
-                    keyName = temp[0];
-                    keyValue = temp[1];
-                    /* キーと値の連想配列を生成 */
-                    key[keyName] = keyValue;
-                }
-                /* 殻のコード */
-                var name = "";
-                /* コード変換 */
-                name = unescape(key["name"]);
-                document.form3.getpram.value = name;
-            }
-            /* オンロード時に実行 */
-            window.onload = getdata;
-</script>
 

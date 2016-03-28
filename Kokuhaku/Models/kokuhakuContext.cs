@@ -11,6 +11,6 @@ namespace Kokuhaku.Models
         public DbSet<deta> honkis { get; set; }
         public DbSet<riyuu> reasons { get; set; }
         public DbSet<ohenzi> henzis { get; set; }
-       // public DbSet<matome> matomes { get; set; }
+        public DbSet<matome> matomes { get; set; }
     }
 }

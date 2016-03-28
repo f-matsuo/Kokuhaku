@@ -37,9 +37,19 @@ namespace Kokuhaku.Controllers
         }
         public ActionResult mail(int honki,int henzi,int reason,string name)//int id
         {
-                    //まとめのDB内のカラムを削除(保留)
-                    //  db.matomes.Remove(name);
-                    //  db.SaveChanges();
+                    //まとめのDB内のカラムを削除
+                      var sakujo =
+                         from t in db.matomes
+                         select t;
+                    //カラムがあれば削除
+                      if (sakujo != null)
+                         {
+                          foreach (var kesu in sakujo) {                       
+                                db.matomes.Remove(kesu);
+                                //DBに反映する
+                                db.SaveChanges();
+                             }
+                        }
 
                     //カテゴリーに属する言葉を取得
 
@@ -58,22 +68,22 @@ namespace Kokuhaku.Controllers
                        where z.reason == reason
                        select z;
 
-            //取り出した結果を一つのテーブルにまとめる
-            foreach(var x in query)
-            {
-                foreach(var y in okaesi)
-                {
-                    foreach(var z in watasi)
+                    //取り出した結果を一つのテーブルにまとめる
+                    foreach(var x in query)
                     {
-                db.matomes.Add(
-                new matome
-                {
-                    name = name,
-                    honkido = x.biko,
-                    henzido = y.biko,
-                    riyuudo = z.biko
-                }
-              );
+                        foreach(var y in okaesi)
+                        {
+                            foreach(var z in watasi)
+                            {
+                        db.matomes.Add(
+                        new matome
+                        {
+                            name = name,
+                            honkido = x.biko,
+                            henzido = y.biko,
+                            riyuudo = z.biko
+                        }
+                      );
                         //DBに反映する
                         db.SaveChanges();
                     }

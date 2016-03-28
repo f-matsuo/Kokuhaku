@@ -12,6 +12,10 @@ table {
     background-size: cover;
 }
 
+td {
+    padding:5px;
+}
+
 p.gyou::after {
     line-height: 250%;
     margin: 10px 0px 0px 0px;
@@ -27,3 +31,16 @@ br.kaigyou{
     line-height:4em;
 }
 
+t.ken {
+    font-weight: bold;
+    color: blue;
+}
+
+t.tai {
+    font-weight: bold;
+    color:navy;
+}
+
+t.hutoku {
+    font-weight: bold;
+}

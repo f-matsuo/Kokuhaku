@@ -6,6 +6,7 @@
 
     <head>
         <link rel="stylesheet" href="~/Content/CSS.css" type="text/css">
+        <link href="~/Content/anime.css" rel="stylesheet" type="text/css" />
         <meta http-equiv="Content-Type" content="text/html" />
         <meta http-equiv="Content-Script-Type" content="text/javascript" />
         <title>告白メール代行</title>
@@ -69,11 +70,11 @@
     <br class="kaigyou" />
 
         <div class="text-right">
-            <input type="button" class="btn btn-danger btn-lg" name="sousin" id="sousin" value="送信" style="width:200px;height:40px;position:relative;right:280px;" />
+            <input type="button" class="btn boom btn-danger btn-lg" name="sousin" id="sousin" value="送信" style="width:200px;height:40px;position:relative;right:280px;" />
         </div>
 
 
-        <div class="container">
+        <div class="container img-block">
             <img src="~/Content/gazou.jpg" style="position:absolute;top:230px;left:700px;" width="310" height="350" />
         </div>
 </form>
@@ -96,6 +97,6 @@
                     location.href = "/kokuhaku/mail?honki=" + honki + "&henzi=" + henzi + "&reason=" + reason + "&name=" + name ;
                 }
             });
-    });
+        });
 </script>
 }

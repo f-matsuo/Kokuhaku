@@ -83,6 +83,10 @@
       <HintPath>..\packages\Npgsql.2.2.7\lib\net45\Mono.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Npgsql, Version=2.2.7.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.2.2.7\lib\net45\Npgsql.dll</HintPath>
       <Private>True</Private>
@@ -211,6 +215,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ControllerTest.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\kokuhakuController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -223,6 +228,8 @@
       <DependentUpon>KokuhakuData.xsd</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\detaRepository.cs" />
+    <Compile Include="Models\Ideta.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\deta.cs" />
     <Compile Include="Models\kokuhakuContext.cs" />
@@ -231,6 +238,7 @@
     <Compile Include="Models\matome.cs" />
     <Compile Include="Models\ohenzi.cs" />
     <Compile Include="Models\riyuu.cs" />
+    <Compile Include="Models\TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -328,7 +336,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\mail\" />
+    <Folder Include="Views\ControllerTest\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

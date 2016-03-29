@@ -10,6 +10,16 @@ namespace Kokuhaku.Controllers
 {
     public class kokuhakuController : Controller
     {
+        private Ideta detarep;
+        //デフォルトコンストラクター(標準のリポジトリを設定)
+        public kokuhakuController() : this(new detaRepository()) { }
+        //テスト用のコンストラクター(後でダミーのリポジトリをセット)
+        public kokuhakuController(Ideta rep)
+        {
+            detarep = rep;
+        }
+
+
         private kokuhakuContext db = new kokuhakuContext();
         // GET: kokuhaku
         public ActionResult Index()
@@ -35,66 +45,24 @@ namespace Kokuhaku.Controllers
 
             return View();
         }
-        public ActionResult mail(int honki,int henzi,int reason,string name)//int id
+
+        public ActionResult mail(int honki,int henzi,int reason,string name)
         {
-                    //まとめのDB内のカラムを削除
-                      var sakujo =
-                         from t in db.matomes
-                         select t;
-                    //カラムがあれば削除
-                      if (sakujo != null)
-                         {
-                          foreach (var kesu in sakujo) {                       
-                                db.matomes.Remove(kesu);
-                                //DBに反映する
-                                db.SaveChanges();
-                             }
-                        }
+                    //まとめのDB内のカラムがあればを削除
+                    detarep.sakujo(name);
 
                     //カテゴリーに属する言葉を取得
 
-                    var query = 
-                        from x in db.honkis
-                        where x.honki == honki
-                        select x;
-
-                    var okaesi =
-                       from y in db.henzis
-                       where y.henzi == henzi
-                       select y;
-
-                    var watasi=
-                       from z in db.reasons
-                       where z.reason == reason
-                       select z;
+                    //リポジトリを利用して指定のレコードを抽出
+                    var query = detarep.detaSelect(honki);
+                    var okaesi = detarep.ohenziSelect(henzi);
+                    var watasi = detarep.riyuuSelect(reason);
 
                     //取り出した結果を一つのテーブルにまとめる
-                    foreach(var x in query)
-                    {
-                        foreach(var y in okaesi)
-                        {
-                            foreach(var z in watasi)
-                            {
-                        db.matomes.Add(
-                        new matome
-                        {
-                            name = name,
-                            honkido = x.biko,
-                            henzido = y.biko,
-                            riyuudo = z.biko
-                        }
-                      );
-                        //DBに反映する
-                        db.SaveChanges();
-                    }
-                }
-            }
+                    detarep.matomeSelect(query, okaesi, watasi, name);
 
-            //結果を画面に表示
-            var kekka =
-                 from t in db.matomes
-                 where t.name == name
-                 select t;
+                    //結果を画面に表示
+                    var kekka = detarep.matomeGetAll();
  
                     return View(kekka);
         }

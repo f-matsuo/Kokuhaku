@@ -10,7 +10,7 @@ namespace Kokuhaku.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect("~/kokuhaku/Index");
         }
 
         public ActionResult About()

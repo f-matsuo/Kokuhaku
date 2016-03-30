@@ -12,5 +12,7 @@ namespace Kokuhaku.Models
         public DbSet<riyuu> reasons { get; set; }
         public DbSet<ohenzi> henzis { get; set; }
         public DbSet<matome> matomes { get; set; }
+
+        public DbSet<roguin> roguins { get; set; }
     }
 }

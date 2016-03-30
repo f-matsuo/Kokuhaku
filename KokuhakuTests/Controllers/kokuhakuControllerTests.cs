@@ -41,8 +41,8 @@ namespace Kokuhaku.Controllers.Tests
         public void SelectTest()
         {
             //アクション実行
-            var result = this.ctrl.mail(1, 2, 1, "なめ") as ViewResult;
-            //戻り値の型をチェック
+            var result = this.ctrl.mail(1, 2, 1, "なめああああああああああああああああ") as ViewResult;
+            //取得したオブジェクトの件数をチェック
             Assert.AreEqual(1, ((IEnumerable<matome>)result.Model).Count());
         }
     }

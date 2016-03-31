@@ -19,12 +19,12 @@
             <strong>・伝えたい相手のお名前orニックネームを入力してください。</strong>
         </div>
 
-        <div class="text-center" style="position:relative;right:30px;">
+        <div class="text-center" style="position:relative;right:30px;" id="henkou">
             @Html.TextBox(
          "name", //要素名
          "",     //デフォルト値
          new { id = "name", maxlength = 8, style = "width:300px;" }   //その他の属性
-         )
+         )<sr class="hidden text-center" style="color:red">＊必須項目です。</sr>
         </div>
         <div class="text-center " style="position:relative;right:50px;">
            <strong> *全角・半角８文字以内で入力してください</strong>
@@ -75,6 +75,7 @@
 
 
         <div class="container img-block">
+            @Html.
             <img src="~/Content/gazou.jpg" style="position:absolute;top:230px;left:700px;" width="310" height="350" />
         </div>
 </form>
@@ -93,8 +94,11 @@
                 //入力欄に文字が入っていなければ警告を表示させる。
                 if (name == "") {
                     alert("名前は必ず入力してください。");
+                    $("#henkou").css('right', '');
+                    $("#henkou").css('left', '21px');
+                    $(".hidden").removeClass("hidden").addClass("hyouzi");
                 } else {
-                    location.href = "/kokuhaku/mail?honki=" + honki + "&henzi=" + henzi + "&reason=" + reason + "&name=" + name ;
+                  location.href = "/kokuhaku/mail?honki=" + honki + "&henzi=" + henzi + "&reason=" + reason + "&name=" + name ;
                 }
             });
         });
